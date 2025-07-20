@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Marlene | Delicias del Mar Caribe</title>
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --red-cartagena: #D62828;
+            --yellow-cartagena: #F77F00;
+            --green-cartagena: #2A9D8F;
+            --blue-cartagena: #003049;
+            --light-blue: #0ea5e9;
+            --ocean-blue: #0284c7;
+            --primary-orange: #FF6B35;
+            --primary-red: #E63946;
+            --primary-teal: #06D6A0;
+            --primary-navy: #0F3460;
+            --accent-coral: #FF8E53;
+            --accent-mint: #7FFFD4;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe6dc 100%);
+            padding-top: 80px;
+            padding-bottom: 80px; /* Espacio para nav móvil */
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 0; /* Solo en desktop, quitar padding inferior */
+            }
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255, 245, 240,0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        /* Wave Animation - Olas naturales con funciones trigonométricas */
+        .wave-animation {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .wave-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            animation: wave-natural 8s ease-in-out infinite;
+        }
+        
+        .wave-layer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.4) 0%,
+                rgba(230, 57, 70, 0.3) 50%,
+                rgba(6, 214, 160, 0.2) 100%);
+            clip-path: polygon(
+                0% 100%,
+                2% 95%,
+                4% 88%,
+                6% 82%,
+                8% 78%,
+                10% 76%,
+                12% 78%,
+                14% 82%,
+                16% 88%,
+                18% 95%,
+                20% 100%,
+                22% 95%,
+                24% 88%,
+                26% 82%,
+                28% 78%,
+                30% 76%,
+                32% 78%,
+                34% 82%,
+                36% 88%,
+                38% 95%,
+                40% 100%,
+                42% 95%,
+                44% 88%,
+                46% 82%,
+                48% 78%,
+                50% 76%,
+                52% 78%,
+                54% 82%,
+                56% 88%,
+                58% 95%,
+                60% 100%,
+                62% 95%,
+                64% 88%,
+                66% 82%,
+                68% 78%,
+                70% 76%,
+                72% 78%,
+                74% 82%,
+                76% 88%,
+                78% 95%,
+                80% 100%,
+                82% 95%,
+                84% 88%,
+                86% 82%,
+                88% 78%,
+                90% 76%,
+                92% 78%,
+                94% 82%,
+                96% 88%,
+                98% 95%,
+                100% 100%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        .wave-layer:nth-child(2) {
+            animation-delay: -2s;
+            animation-duration: 10s;
+        }
+        
+        .wave-layer:nth-child(2)::before {
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.3) 0%,
+                rgba(230, 57, 70, 0.25) 50%,
+                rgba(6, 214, 160, 0.15) 100%);
+            clip-path: polygon(
+                0% 100%,
+                2% 92%,
+                4% 85%,
+                6% 80%,
+                8% 77%,
+                10% 76%,
+                12% 77%,
+                14% 80%,
+                16% 85%,
+                18% 92%,
+                20% 98%,
+                22% 92%,
+                24% 85%,
+                26% 80%,
+                28% 77%,
+                30% 76%,
+                32% 77%,
+                34% 80%,
+                36% 85%,
+                38% 92%,
+                40% 98%,
+                42% 92%,
+                44% 85%,
+                46% 80%,
+                48% 77%,
+                50% 76%,
+                52% 77%,
+                54% 80%,
+                56% 85%,
+                58% 92%,
+                60% 98%,
+                62% 92%,
+                64% 85%,
+                66% 80%,
+                68% 77%,
+                70% 76%,
+                72% 77%,
+                74% 80%,
+                76% 85%,
+                78% 92%,
+                80% 98%,
+                82% 92%,
+                84% 85%,
+                86% 80%,
+                88% 77%,
+                90% 76%,
+                92% 77%,
+                94% 80%,
+                96% 85%,
+                98% 92%,
+                100% 98%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        .wave-layer:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 12s;
+        }
+        
+        .wave-layer:nth-child(3)::before {
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.2) 0%,
+                rgba(230, 57, 70, 0.15) 50%,
+                rgba(6, 214, 160, 0.1) 100%);
+            clip-path: polygon(
+                0% 100%,
+                2% 90%,
+                4% 83%,
+                6% 78%,
+                8% 75%,
+                10% 74%,
+                12% 75%,
+                14% 78%,
+                16% 83%,
+                18% 90%,
+                20% 96%,
+                22% 90%,
+                24% 83%,
+                26% 78%,
+                28% 75%,
+                30% 74%,
+                32% 75%,
+                34% 78%,
+                36% 83%,
+                38% 90%,
+                40% 96%,
+                42% 90%,
+                44% 83%,
+                46% 78%,
+                48% 75%,
+                50% 74%,
+                52% 75%,
+                54% 78%,
+                56% 83%,
+                58% 90%,
+                60% 96%,
+                62% 90%,
+                64% 83%,
+                66% 78%,
+                68% 75%,
+                70% 74%,
+                72% 75%,
+                74% 78%,
+                76% 83%,
+                78% 90%,
+                80% 96%,
+                82% 90%,
+                84% 83%,
+                86% 78%,
+                88% 75%,
+                90% 74%,
+                92% 75%,
+                94% 78%,
+                96% 83%,
+                98% 90%,
+                100% 96%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        @keyframes wave-natural {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        /* Olas estáticas del final - Olas blancas naturales */
+        .wave-divider {
+            position: relative;
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .wave-white-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            animation: wave-white 10s ease-in-out infinite;
+        }
+        
+        .wave-white-layer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(248, 248, 248, 0.9) 0%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(248, 248, 248, 0.7) 100%);
+            clip-path: polygon(
+                0% 100%,
+                2% 88%,
+                4% 78%,
+                6% 70%,
+                8% 65%,
+                10% 63%,
+                12% 65%,
+                14% 70%,
+                16% 78%,
+                18% 88%,
+                20% 95%,
+                22% 88%,
+                24% 78%,
+                26% 70%,
+                28% 65%,
+                30% 63%,
+                32% 65%,
+                34% 70%,
+                36% 78%,
+                38% 88%,
+                40% 95%,
+                42% 88%,
+                44% 78%,
+                46% 70%,
+                48% 65%,
+                50% 63%,
+                52% 65%,
+                54% 70%,
+                56% 78%,
+                58% 88%,
+                60% 95%,
+                62% 88%,
+                64% 78%,
+                66% 70%,
+                68% 65%,
+                70% 63%,
+                72% 65%,
+                74% 70%,
+                76% 78%,
+                78% 88%,
+                80% 95%,
+                82% 88%,
+                84% 78%,
+                86% 70%,
+                88% 65%,
+                90% 63%,
+                92% 65%,
+                94% 70%,
+                96% 78%,
+                98% 88%,
+                100% 95%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        .wave-white-layer:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 12s;
+        }
+        
+        .wave-white-layer:nth-child(2)::before {
+            background: linear-gradient(135deg, 
+                rgba(248, 248, 248, 0.7) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(248, 248, 248, 0.5) 100%);
+            clip-path: polygon(
+                0% 100%,
+                2% 85%,
+                4% 75%,
+                6% 68%,
+                8% 63%,
+                10% 61%,
+                12% 63%,
+                14% 68%,
+                16% 75%,
+                18% 85%,
+                20% 92%,
+                22% 85%,
+                24% 75%,
+                26% 68%,
+                28% 63%,
+                30% 61%,
+                32% 63%,
+                34% 68%,
+                36% 75%,
+                38% 85%,
+                40% 92%,
+                42% 85%,
+                44% 75%,
+                46% 68%,
+                48% 63%,
+                50% 61%,
+                52% 63%,
+                54% 68%,
+                56% 75%,
+                58% 85%,
+                60% 92%,
+                62% 85%,
+                64% 75%,
+                66% 68%,
+                68% 63%,
+                70% 61%,
+                72% 63%,
+                74% 68%,
+                76% 75%,
+                78% 85%,
+                80% 92%,
+                82% 85%,
+                84% 75%,
+                86% 68%,
+                88% 63%,
+                90% 61%,
+                92% 63%,
+                94% 68%,
+                96% 75%,
+                98% 85%,
+                100% 92%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        .wave-white-layer:nth-child(3) {
+            animation-delay: -6s;
+            animation-duration: 14s;
+        }
+        
+        .wave-white-layer:nth-child(3)::before {
+            background: linear-gradient(135deg, 
+                rgba(248, 248, 248, 0.5) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(248, 248, 248, 0.3) 100%);
+            clip-path: polygon(
+                0% 100%,
+                2% 82%,
+                4% 72%,
+                6% 65%,
+                8% 60%,
+                10% 58%,
+                12% 60%,
+                14% 65%,
+                16% 72%,
+                18% 82%,
+                20% 90%,
+                22% 82%,
+                24% 72%,
+                26% 65%,
+                28% 60%,
+                30% 58%,
+                32% 60%,
+                34% 65%,
+                36% 72%,
+                38% 82%,
+                40% 90%,
+                42% 82%,
+                44% 72%,
+                46% 65%,
+                48% 60%,
+                50% 58%,
+                52% 60%,
+                54% 65%,
+                56% 72%,
+                58% 82%,
+                60% 90%,
+                62% 82%,
+                64% 72%,
+                66% 65%,
+                68% 60%,
+                70% 58%,
+                72% 60%,
+                74% 65%,
+                76% 72%,
+                78% 82%,
+                80% 90%,
+                82% 82%,
+                84% 72%,
+                86% 65%,
+                88% 60%,
+                90% 58%,
+                92% 60%,
+                94% 65%,
+                96% 72%,
+                98% 82%,
+                100% 90%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        @keyframes wave-white {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        @keyframes wave-natural {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        @keyframes wave-white {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        
+        .dish-description {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .dish-card:hover .dish-description {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-red));
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .nav-link:hover::after,
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.7) 0%, rgba(230, 57, 70, 0.6) 50%, rgba(255, 107, 53, 0.4) 100%);
+        }
+        
+        .wave-divider {
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+        }
+        
+        .wave-divider svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .dish-description {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav {
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255, 245, 240,0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+        }
+        
+        .mobile-nav-btn {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+        }
+        
+        .mobile-nav-btn.active {
+            transform: rotate(180deg);
+            background: linear-gradient(135deg, var(--yellow-cartagena), #ff8c00);
+        }
+        
+        /* Logo Animation */
+        .logo-animate {
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Button Enhancements */
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-navy));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Estilos para el carrusel del local */
+        #localCarousel .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        #localCarousel .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .local-dot {
+            transition: all 0.3s ease;
+        }
+
+        .local-dot:hover {
+            background-color: rgba(255, 255, 255, 1) !important;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Main Header (Desktop & Mobile) -->
+    <header class="main-header fixed top-0 left-0 right-0 z-50 py-4 px-6">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="logo-animate">
+                    <img src="img/icon.png" alt="Restaurante Marlene" class="h-12 w-12 rounded-full border-2 border-orange-400 shadow-lg">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Restaurante Marlene</h1>
+                    <p class="text-sm text-orange-600">Sabores del Caribe</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#inicio" class="nav-link active-nav flex items-center text-gray-700 hover:text-orange-600 font-medium">
+                    <span class="material-icons mr-2 text-lg">home</span> Inicio
+                </a>
+                <a href="#menu" class="nav-link flex items-center text-gray-700 hover:text-orange-600 font-medium">
+                    <span class="material-icons mr-2 text-lg">restaurant_menu</span> Menú
+                </a>
+                <a href="#servicios" class="nav-link flex items-center text-gray-700 hover:text-orange-600 font-medium">
+                    <span class="material-icons mr-2 text-lg">celebration</span> Servicios
+                </a>
+                <a href="#contacto" class="nav-link flex items-center text-gray-700 hover:text-orange-600 font-medium">
+                    <span class="material-icons mr-2 text-lg">contact_phone</span> Contacto
+                </a>
+            </nav>
+            
+            <!-- Social Icons -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://www.facebook.com/javier.zuniga.42773" target="_blank" class="text-gray-500 hover:text-blue-600 transition">
+                    <span class="material-icons">facebook</span>
+                </a>
+                <a href="https://www.instagram.com/restaurante_marlen3?igsh=cmpwNXo4enA3Z2hj" target="_blank" class="text-gray-500 hover:text-pink-500 transition">
+                    <span class="material-icons">camera_alt</span>
+                </a>
+                <a href="https://wa.me/573008315704?text=Hola%20señor%20Javier,%20quiero%20hacer%20una%20reserva" target="_blank" class="text-gray-500 hover:text-green-500 transition">
+                    <span class="material-icons">chat</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button (Hidden since nav is always visible) -->
+            <button id="mobileNavBtn" class="hidden w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center mobile-nav-btn">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation (Hidden by default) -->
+    <nav id="mobileNav" class="md:hidden mobile-nav fixed bottom-0 left-0 right-0 z-40 py-4 px-6 rounded-t-2xl shadow-2xl">
+        <ul class="flex justify-around">
+            <li>
+                <a href="#inicio" class="flex flex-col items-center text-gray-700 hover:text-orange-600">
+                    <span class="material-icons text-2xl">home</span>
+                    <span class="text-xs">Inicio</span>
+                </a>
+            </li>
+            <li>
+                <a href="#menu" class="flex flex-col items-center text-gray-700 hover:text-orange-600">
+                    <span class="material-icons text-2xl">restaurant_menu</span>
+                    <span class="text-xs">Menú</span>
+                </a>
+            </li>
+            <li>
+                <a href="#servicios" class="flex flex-col items-center text-gray-700 hover:text-orange-600">
+                    <span class="material-icons text-2xl">celebration</span>
+                    <span class="text-xs">Servicios</span>
+                </a>
+            </li>
+            <li>
+                <a href="#contacto" class="flex flex-col items-center text-gray-700 hover:text-orange-600">
+                    <span class="material-icons text-2xl">contact_phone</span>
+                    <span class="text-xs">Contacto</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="w-full">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 hero-overlay"></div>
+
+            <!-- Animaciones de olas naturales -->
+            <div class="wave-animation">
+                <div class="wave-layer"></div>
+                <div class="wave-layer"></div>
+                <div class="wave-layer"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg">
+                    Restaurante Marlene
+                </h1>
+                <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">
+                    Los mejores sabores del Mar Caribe en cada bocado
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn-gradient text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center">
+                        <span class="material-icons mr-2">restaurant_menu</span>
+                        Ver Menú
+                    </button>
+                    <a href="https://wa.me/573008315704?text=Hola%20señor%20Javier,%20quiero%20hacer%20una%20reserva" target="_blank" class="bg-white bg-opacity-20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg border-2 border-white border-opacity-30 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <span class="material-icons mr-2">call</span>
+                        Reservar Mesa
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Nosotros Section -->
+        <section id="sobre-nosotros" class="py-20 bg-gradient-to-br from-teal-50 to-orange-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        Sobre Nosotros
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Conoce la historia y experiencia que nos convierte en tu destino gastronómico favorito del Caribe
+                    </p>
+                </div>
+
+                <!-- Sobre Nosotros Content -->
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-3xl p-8">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="inline-flex items-center justify-center w-16 h-16 bg-orange-500 text-white rounded-full mr-4">
+                                    <img src="img/icon.png" alt="Restaurante Marlene" class="w-10 h-10 rounded-full">
+                                </div>
+                                <h4 class="text-3xl font-bold text-gray-800">Restaurante Marlene</h4>
+                            </div>
+                            <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+                                Restaurante Marlene es su destino perfecto para disfrutar de la más exquisita 
+                                <span class="font-semibold text-orange-600">comida de mar</span> en un ambiente familiar y acogedor. 
+                                Nos especializamos en crear momentos inolvidables para 
+                                <span class="font-semibold text-teal-600">compartir en familia</span>, 
+                                celebrar eventos especiales, realizar paseos relajantes y disfrutar de experiencias únicas 
+                                junto al mar.
+                            </p>
+                            <ul class="text-gray-600 space-y-2 mb-6">
+                                <li class="flex items-center"><span class="material-icons text-orange-500 mr-2">check_circle</span>Especialistas en comida de mar fresca</li>
+                                <li class="flex items-center"><span class="material-icons text-orange-500 mr-2">check_circle</span>Ambiente familiar y acogedor</li>
+                                <li class="flex items-center"><span class="material-icons text-orange-500 mr-2">check_circle</span>Eventos y celebraciones especiales</li>
+                                <li class="flex items-center"><span class="material-icons text-orange-500 mr-2">check_circle</span>Sabores auténticos del Caribe</li>
+                            </ul>
+                            <p class="text-gray-600 leading-relaxed">
+                                Nuestro compromiso es brindarle un espacio donde pueda relajarse, disfrutar de sabores auténticos 
+                                del Caribe colombiano y crear recuerdos duraderos con sus seres queridos.
+                            </p>
+                        </div>
+                        
+                        <!-- Carrusel del Local -->
+                        <div class="relative">
+                            <div id="localCarousel" class="carousel relative overflow-hidden rounded-2xl shadow-2xl">
+                                <div class="carousel-container flex transition-transform duration-500 ease-in-out">
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/local/local_1.png" alt="Interior del Restaurante Marlene" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/local/local_2.png" alt="Ambiente del Restaurante Marlene" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/local/local_3.png" alt="Vista del Restaurante Marlene" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/local/local_4.png" alt="Instalaciones del Restaurante Marlene" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                                
+                                <!-- Controles del carrusel -->
+                                <button onclick="prevLocalSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 transition-all duration-300">
+                                    <span class="material-icons">chevron_left</span>
+                                </button>
+                                <button onclick="nextLocalSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 transition-all duration-300">
+                                    <span class="material-icons">chevron_right</span>
+                                </button>
+                                
+                                <!-- Indicadores -->
+                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                    <button onclick="goToLocalSlide(0)" class="local-dot w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToLocalSlide(1)" class="local-dot w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToLocalSlide(2)" class="local-dot w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToLocalSlide(3)" class="local-dot w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="py-20 bg-gradient-to-br from-orange-50 to-red-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        Nuestro Menú
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Descubre los sabores auténticos del Caribe en cada uno de nuestros platillos especialmente preparados
+                    </p>
+                </div>
+                
+                <!-- Sección de Entradas -->
+                <div class="mb-20">
+                    <div class="text-center mb-12">
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Entradas
+                        </h3>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Deliciosos aperitivos para abrir el apetito con los auténticos sabores del Caribe
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        <!-- Entrada 1: Ceviche -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/entradas/ceviche.png" alt="Ceviche" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-orange-500 mr-2">restaurant</span>
+                                    Ceviche
+                                </h4>
+                                <p class="text-gray-600 text-sm">Fresco y vibrante del mar Caribe</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Pescado fresco marinado en limón con cebolla roja, cilantro y un toque de ají amarillo. Acompañado de camote y maíz tostado.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Entrada 2: Patacones -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/entradas/patacones.png" alt="Patacones" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-yellow-600 mr-2">local_dining</span>
+                                    Patacones
+                                </h4>
+                                <p class="text-gray-600 text-sm">Crujientes plátanos de la costa</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Plátano verde frito y aplastado, dorado a la perfección. Servido con hogao criollo y suero atollabuey.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Entrada 3: Super Patacones -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/entradas/super_patacones.png" alt="Super Patacones" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-red-500 mr-2">star</span>
+                                    Super Patacones
+                                </h4>
+                                <p class="text-gray-600 text-sm">La versión suprema de nuestros patacones</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Patacones gigantes cubiertos con camarones, pollo desmechado, queso costeño y salsa rosada. Una explosión de sabor.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Entrada 4: Picada de Mariscos -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/entradas/picada_de_mariscos.png" alt="Picada de Mariscos" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-teal-500 mr-2">set_meal</span>
+                                    Picada de Mariscos
+                                </h4>
+                                <p class="text-gray-600 text-sm">Tesoros del mar para compartir</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Variedad de mariscos frescos: camarones, pulpo, calamar y caracol. Perfecta para compartir con salsa golf y limón.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Entrada 5: Guiso de Mariscos -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/entradas/guiso_mariscos.png" alt="Guiso de Mariscos" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-blue-500 mr-2">soup_kitchen</span>
+                                    Guiso de Mariscos
+                                </h4>
+                                <p class="text-gray-600 text-sm">Sabores intensos del Caribe</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Mariscos mixtos en salsa criolla con cebolla, ají y especias caribeñas. Servido con arroz blanco y patacones.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Platos Principales -->
+                <div class="mb-20">
+                    <div class="text-center mb-12">
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Platos Principales
+                        </h3>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Nuestras especialidades de la casa preparadas con ingredientes frescos del mar
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        <!-- Primera fila (5 platos) -->
+                        <!-- Plato 1: Arroz de Mariscos -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/arroz_de_mariscos.png" alt="Arroz de Mariscos" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-orange-500 mr-2">rice_bowl</span>
+                                    Arroz de Mariscos
+                                </h4>
+                                <p class="text-gray-600 text-sm">Tradición marina en cada grano</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Exquisito arroz amarillo con mariscos frescos del Caribe, camarones, calamares y mejillones, sazonado con especias tradicionales.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 2: Bandeja del Langostino -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/bandeja_delangista.png" alt="Bandeja del Langostino" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-red-500 mr-2">set_meal</span>
+                                    Bandeja del Langostino
+                                </h4>
+                                <p class="text-gray-600 text-sm">La joya del mar en tu mesa</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Generosa bandeja con langostinos frescos a la plancha, acompañados de arroz, patacones y ensalada fresca del día.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 3: Bandeja Mixta -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/bandeja_mixta.png" alt="Bandeja Mixta" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-blue-500 mr-2">restaurant</span>
+                                    Bandeja Mixta
+                                </h4>
+                                <p class="text-gray-600 text-sm">Variedad perfecta del océano</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Combinación perfecta de mariscos y pescado fresco, acompañado de arroz con coco, yuca y plátano maduro.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 4: Bandeja Mixta Grande -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/bandeja_mixta_grande.png" alt="Bandeja Mixta Grande" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-purple-500 mr-2">dining</span>
+                                    Bandeja Mixta Grande
+                                </h4>
+                                <p class="text-gray-600 text-sm">Abundancia marina para compartir</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Nuestra bandeja más generosa con variedad de mariscos, pescados y acompañamientos. Ideal para compartir entre dos personas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 5: Bandeja Trifásica -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/bandeja_trifasica.png" alt="Bandeja Trifásica" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-green-500 mr-2">layers</span>
+                                    Bandeja Trifásica
+                                </h4>
+                                <p class="text-gray-600 text-sm">Experiencia gastronómica única</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Tres niveles de sabor: mar, tierra y aire. Mariscos, carnes y pollo en una presentación espectacular.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Segunda fila (5 platos) -->
+                        <!-- Plato 6: Camarones al Ajillo -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/camarones_al_ajillo.png" alt="Camarones al Ajillo" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-yellow-500 mr-2">ramen_dining</span>
+                                    Camarones al Ajillo
+                                </h4>
+                                <p class="text-gray-600 text-sm">Aromática seducción mediterránea</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Camarones jumbo salteados en aceite de oliva con ajo, perejil y un toque de vino blanco. Acompañado de arroz blanco.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 7: Camarones Apanados -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/Camarones_apanados.png" alt="Camarones Apanados" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-amber-500 mr-2">fastfood</span>
+                                    Camarones Apanados
+                                </h4>
+                                <p class="text-gray-600 text-sm">Crujientes delicias doradas</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Camarones grandes empanizados en pan rallado dorado, crujientes por fuera y tiernos por dentro. Con salsa tártara.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 8: Cazuela de Mariscos -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/cazuela_de_mariscos.png" alt="Cazuela de Mariscos" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-red-600 mr-2">soup_kitchen</span>
+                                    Cazuela de Mariscos
+                                </h4>
+                                <p class="text-gray-600 text-sm">Tradición costeña en cada cucharada</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Tradicional cazuela con variedad de mariscos frescos en salsa criolla, acompañada de yuca, plátano y casabe.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 9: Cóctel de Camarón -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/coctel_de_camaron.png" alt="Cóctel de Camarón" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-pink-500 mr-2">local_bar</span>
+                                    Cóctel de Camarón
+                                </h4>
+                                <p class="text-gray-600 text-sm">Refrescante elegancia marina</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Refrescante cóctel de camarones con salsa rosada, cebolla, apio y aguacate. Perfecto como entrada o plato ligero.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Plato 10: Langosta -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/platos_fuertes/langosta.png" alt="Langosta" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-red-500 mr-2">celebration</span>
+                                    Langosta
+                                </h4>
+                                <p class="text-gray-600 text-sm">La reina indiscutible del mar</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Langosta fresca del Caribe preparada a la plancha con mantequilla de hierbas, acompañada de arroz con coco.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Platos adicionales (ocultos inicialmente) -->
+                        <div id="additional-dishes" class="hidden col-span-full">
+                            <div class="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                                <!-- Plato 11: Langostinos Tigre -->
+                                <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                    <img src="img/platos_fuertes/langostinos_trigres.png" alt="Langostinos Tigre" class="w-full h-40 object-cover">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                            <span class="material-icons text-orange-600 mr-2">phishing</span>
+                                            Langostinos Tigre
+                                        </h4>
+                                        <p class="text-gray-600 text-sm">Magnificencia rayada del océano</p>
+                                        <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                            <p class="text-gray-500 text-xs">Langostinos tigre de gran tamaño a la plancha con especias caribeñas, servidos con vegetales salteados y arroz.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plato 12: Mojarra Roja -->
+                                <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                    <img src="img/platos_fuertes/mojarra_roja.png" alt="Mojarra Roja" class="w-full h-40 object-cover">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                            <span class="material-icons text-red-400 mr-2">set_meal</span>
+                                            Mojarra Roja
+                                        </h4>
+                                        <p class="text-gray-600 text-sm">Sabor auténtico del río</p>
+                                        <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                            <p class="text-gray-500 text-xs">Mojarra roja fresca frita o a la plancha, acompañada de patacones, arroz de coco y ensalada criolla.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plato 13: Pargo Frito -->
+                                <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                    <img src="img/platos_fuertes/pargo_frito.png" alt="Pargo Frito" class="w-full h-40 object-cover">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                            <span class="material-icons text-teal-500 mr-2">dining</span>
+                                            Pargo Frito
+                                        </h4>
+                                        <p class="text-gray-600 text-sm">Crujiente perfección dorada</p>
+                                        <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                            <p class="text-gray-500 text-xs">Pargo rojo entero frito dorado y crujiente, servido con arroz, patacones, yuca y hogao criollo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plato 14: Picada 3 Carnes -->
+                                <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                    <img src="img/platos_fuertes/picada_3_carnes.png" alt="Picada 3 Carnes" class="w-full h-40 object-cover">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                            <span class="material-icons text-brown-500 mr-2">restaurant_menu</span>
+                                            Picada 3 Carnes
+                                        </h4>
+                                        <p class="text-gray-600 text-sm">Fiesta carnívora para compartir</p>
+                                        <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                            <p class="text-gray-500 text-xs">Combinación de res, cerdo y pollo a la plancha con chorizo, morcilla, papa criolla y arepas. Para compartir.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plato 15: Pulpa de Jaiba -->
+                                <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                    <img src="img/platos_fuertes/pulpa_de_jaiba.png" alt="Pulpa de Jaiba" class="w-full h-40 object-cover">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                            <span class="material-icons text-blue-600 mr-2">water</span>
+                                            Pulpa de Jaiba
+                                        </h4>
+                                        <p class="text-gray-600 text-sm">Tesoro escondido del mar</p>
+                                        <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                            <p class="text-gray-500 text-xs">Deliciosa pulpa de jaiba fresca guisada en salsa criolla con especias del Caribe, servida con arroz blanco.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plato 16: Sierra -->
+                                <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                    <img src="img/platos_fuertes/sierra.png" alt="Sierra" class="w-full h-40 object-cover">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                            <span class="material-icons text-indigo-500 mr-2">waves</span>
+                                            Sierra
+                                        </h4>
+                                        <p class="text-gray-600 text-sm">Clásico pescado del Caribe</p>
+                                        <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                            <p class="text-gray-500 text-xs">Sierra fresca a la plancha o frita, pescado típico del Caribe colombiano, acompañado de yuca, arroz y ensalada.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botón Ver más platos -->
+                    <div class="text-center mt-8">
+                        <button id="showMoreDishes" onclick="toggleAdditionalDishes()" class="btn-gradient text-white px-8 py-3 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center mx-auto">
+                            <span class="material-icons mr-2">expand_more</span>
+                            <span id="buttonText">Ver más platos</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Sección de Bebidas -->
+                <div class="mt-20">
+                    <div class="text-center mb-16">
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Nuestras Bebidas
+                        </h3>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Refréscate con nuestras bebidas tropicales y cocteles especiales del Caribe
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                        <!-- Bebida 1: Caipirinha -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/bebidas/caipirinha.png" alt="Caipirinha" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-green-500 mr-2">local_bar</span>
+                                    Caipirinha
+                                </h4>
+                                <p class="text-gray-600 text-sm">Pasión brasileña refrescante</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Clásico cóctel brasileño con cachaza, lima fresca, azúcar y hielo picado. Refrescante y lleno de sabor tropical.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bebida 2: Coco Loco -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/bebidas/coco_loco.png" alt="Coco Loco" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-brown-500 mr-2">emoji_food_beverage</span>
+                                    Coco Loco
+                                </h4>
+                                <p class="text-gray-600 text-sm">Aventura tropical en coco natural</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Espectacular cóctel servido en coco natural con ron, crema de coco, piña y frutas tropicales. Una experiencia única.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bebida 3: Jugo de Guayaba Granizado -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/bebidas/jugo_de_guayaba_granizado.png" alt="Jugo de Guayaba Granizado" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-pink-500 mr-2">local_cafe</span>
+                                    Jugo de Guayaba Granizado
+                                </h4>
+                                <p class="text-gray-600 text-sm">Dulzura rosada del trópico</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Refrescante jugo natural de guayaba con hielo granizado, endulzado naturalmente. Perfecto para el clima caribeño.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bebida 4: Limonada de Fresa -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/bebidas/limonada_de_fresa.png" alt="Limonada de Fresa" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-red-500 mr-2">local_drink</span>
+                                    Limonada de Fresa
+                                </h4>
+                                <p class="text-gray-600 text-sm">Equilibrio perfecto de sabores</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Deliciosa limonada con fresas frescas, limón natural y hierbabuena. Una mezcla perfecta de dulce y ácido.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bebida 5: Limonada Granizada -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/bebidas/limonada_granisada.png" alt="Limonada Granizada" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-yellow-500 mr-2">water_drop</span>
+                                    Limonada Granizada
+                                </h4>
+                                <p class="text-gray-600 text-sm">Clásico refrescante colombiano</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Clásica limonada colombiana con hielo granizado, limón fresco y hierbabuena. Refrescante y tradicional.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bebida 6: Piña Colada -->
+                        <div class="dish-card bg-white rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                            <img src="img/bebidas/piña_colada.png" alt="Piña Colada" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                    <span class="material-icons text-orange-500 mr-2">wine_bar</span>
+                                    Piña Colada
+                                </h4>
+                                <p class="text-gray-600 text-sm">Cremosidad caribeña irresistible</p>
+                                <div class="dish-description opacity-0 hover:opacity-100 transition-opacity duration-300 mt-2">
+                                    <p class="text-gray-500 text-xs">Cremoso cóctel tropical con ron blanco, crema de coco, piña natural y hielo. Servido con decoración tropical.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        Nuestros Servicios
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Ofrecemos una experiencia completa para hacer de tu visita un momento inolvidable
+                    </p>
+                </div>
+                
+                <!-- Servicios Principales -->
+                <div class="grid md:grid-cols-3 gap-8 mb-20">
+                    <div class="text-center p-8 bg-orange-50 rounded-2xl hover:bg-orange-100 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-orange-500 text-white rounded-full mb-6">
+                            <span class="material-icons text-3xl">event_seat</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Reservas</h3>
+                        <p class="text-gray-600">Reserve su mesa con anticipación y garantice su lugar en nuestro acogedor restaurante.</p>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-teal-50 rounded-2xl hover:bg-teal-100 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-500 text-white rounded-full mb-6">
+                            <span class="material-icons text-3xl">delivery_dining</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Domicilios</h3>
+                        <p class="text-gray-600">Disfrute de nuestros deliciosos platillos en la comodidad de su hogar con nuestro servicio a domicilio.</p>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-red-50 rounded-2xl hover:bg-red-100 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-500 text-white rounded-full mb-6">
+                            <span class="material-icons text-3xl">celebration</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Eventos</h3>
+                        <p class="text-gray-600">Organizamos eventos especiales, celebraciones familiares y cenas empresariales.</p>
+                    </div>
+                </div>
+
+                <!-- Experiencias Especiales -->
+                <div class="mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-4">
+                        Experiencias Especiales
+                    </h3>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto text-center mb-16">
+                        Descubre aventuras únicas que complementan tu experiencia gastronómica en el paraíso caribeño
+                    </p>
+                </div>
+
+                <!-- Paseo en Caballo -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 mb-12">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="inline-flex items-center justify-center w-16 h-16 bg-yellow-600 text-white rounded-full mr-4">
+                                    <span class="material-icons text-3xl">tour</span>
+                                </div>
+                                <h4 class="text-3xl font-bold text-gray-800">Paseos en Caballo</h4>
+                            </div>
+                            <p class="text-gray-700 text-lg mb-6">
+                                Vive una experiencia inolvidable recorriendo las hermosas playas del Caribe colombiano a caballo. 
+                                Nuestros guías expertos te llevarán por senderos únicos donde podrás disfrutar de paisajes 
+                                espectaculares, brisa marina y la tranquilidad que solo el contacto con la naturaleza puede ofrecer.
+                            </p>
+                            <ul class="text-gray-600 space-y-2 mb-6">
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Recorridos por la playa</li>
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Guías profesionales</li>
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Caballos dóciles y entrenados</li>
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Atardeceres únicos</li>
+                            </ul>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-orange-600">¡Aventura Única Te Espera!</span>
+                                <a href="https://wa.me/573008315704?text=Hola%20señor%20Javier,%20cordial%20saludo.%20Me%20interesa%20conocer%20más%20información%20sobre%20el%20paseo%20en%20caballo%20por%20la%20playa.%20¿Podría%20proporcionarme%20detalles%20sobre%20horarios,%20disponibilidad%20y%20proceso%20de%20reserva?%20Muchas%20gracias." target="_blank" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center">
+                                    <span class="material-icons mr-2">chat</span>
+                                    Reservar Paseo
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Carrusel de Paseo en Caballo -->
+                        <div class="relative">
+                            <div id="carousel-caballo" class="carousel relative overflow-hidden rounded-2xl shadow-2xl">
+                                <div class="carousel-container flex transition-transform duration-500 ease-in-out">
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/paseo_caballo/caballo_1.png" alt="Paseo en Caballo 1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/paseo_caballo/caballo_2.png" alt="Paseo en Caballo 2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/paseo_caballo/caballo_3.png" alt="Paseo en Caballo 3" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                                
+                                <!-- Controles del carrusel -->
+                                <button onclick="prevSlide('caballo')" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 transition-all duration-300">
+                                    <span class="material-icons">chevron_left</span>
+                                </button>
+                                <button onclick="nextSlide('caballo')" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 transition-all duration-300">
+                                    <span class="material-icons">chevron_right</span>
+                                </button>
+                                
+                                <!-- Indicadores -->
+                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                    <button onclick="goToSlide('caballo', 0)" class="caballo-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToSlide('caballo', 1)" class="caballo-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToSlide('caballo', 2)" class="caballo-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manglar -->
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-8">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="lg:order-2">
+                            <div class="flex items-center mb-6">
+                                <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-600 text-white rounded-full mr-4">
+                                    <span class="material-icons text-3xl">directions_boat</span>
+                                </div>
+                                <h4 class="text-3xl font-bold text-gray-800">Tour por el Manglar</h4>
+                            </div>
+                            <p class="text-gray-700 text-lg mb-6">
+                                Explora el fascinante ecosistema del manglar en una aventura ecológica única. Navega por 
+                                canales naturales donde podrás observar la biodiversidad marina, aves exóticas y la 
+                                majestuosa vegetación tropical que hace del manglar uno de los ecosistemas más importantes del Caribe.
+                            </p>
+                            <ul class="text-gray-600 space-y-2 mb-6">
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Observación de fauna silvestre</li>
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Guía ecológico especializado</li>
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Bote seguro y cómodo</li>
+                                <li class="flex items-center"><span class="material-icons text-green-500 mr-2">check_circle</span>Experiencia educativa</li>
+                            </ul>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-teal-600">¡Naturaleza en Su Esplendor!</span>
+                                <a href="https://wa.me/573008315704?text=Hola%20señor%20Javier,%20cordial%20saludo.%20Me%20gustaría%20obtener%20información%20sobre%20el%20tour%20por%20el%20manglar.%20¿Podría%20indicarme%20los%20horarios%20disponibles,%20duración%20del%20recorrido%20y%20cómo%20realizar%20la%20reserva?%20Agradezco%20su%20atención." target="_blank" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center">
+                                    <span class="material-icons mr-2">chat</span>
+                                    Reservar Tour
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Carrusel de Manglar -->
+                        <div class="relative lg:order-1">
+                            <div id="carousel-manglar" class="carousel relative overflow-hidden rounded-2xl shadow-2xl">
+                                <div class="carousel-container flex transition-transform duration-500 ease-in-out">
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/manglar/manglar_1.png" alt="Manglar 1" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/manglar/manglar_2.png" alt="Manglar 2" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/manglar/manglas_3.png" alt="Manglar 3" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/manglar/manglar_4.png" alt="Manglar 4" class="w-full h-64 object-cover">
+                                    </div>
+                                    <div class="carousel-slide min-w-full">
+                                        <img src="img/otros_servicios/manglar/manglar_5.png" alt="Manglar 5" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                                
+                                <!-- Controles del carrusel -->
+                                <button onclick="prevSlide('manglar')" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 transition-all duration-300">
+                                    <span class="material-icons">chevron_left</span>
+                                </button>
+                                <button onclick="nextSlide('manglar')" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 transition-all duration-300">
+                                    <span class="material-icons">chevron_right</span>
+                                </button>
+                                
+                                <!-- Indicadores -->
+                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                    <button onclick="goToSlide('manglar', 0)" class="manglar-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToSlide('manglar', 1)" class="manglar-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToSlide('manglar', 2)" class="manglar-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToSlide('manglar', 3)" class="manglar-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                    <button onclick="goToSlide('manglar', 4)" class="manglar-indicator w-3 h-3 bg-white bg-opacity-60 rounded-full transition-all duration-300"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="py-20 bg-gradient-to-br from-gray-900 to-orange-900 text-white relative overflow-hidden">
+            <div class="wave-divider">
+                <div class="wave-white-layer"></div>
+                <div class="wave-white-layer"></div>
+                <div class="wave-white-layer"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        Contáctanos
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        Estamos aquí para atenderte. Visítanos, llámanos o escríbenos
+                    </p>
+                </div>
+                
+                <!-- Mapa de Google Maps -->
+                <div class="mb-12">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8">
+                        <div class="text-center mb-6">
+                            <h3 class="text-3xl font-bold mb-4">Nuestra Ubicación</h3>
+                            <p class="text-gray-300">Encuéntranos fácilmente en La Boquilla, Cartagena</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-2xl overflow-hidden shadow-2xl max-w-4xl w-full">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d980.7989543858566!2d-75.4929557304968!3d10.485224318064175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef63b2e3a9e6e8d%3A0x3e80fa002e46c03e!2sRestaurante%20Marlene!5e0!3m2!1ses!2sco!4v1753027574548!5m2!1ses!2sco" 
+                                        width="100%" 
+                                        height="400" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        class="w-full">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center p-8 bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-orange-500 text-white rounded-full mb-6">
+                            <span class="material-icons text-3xl">location_on</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Ubicación</h3>
+                        <p class="text-gray-300 mb-6">Restaurante Marlene<br>La Boquilla, Provincia de Cartagena<br>Colombia</p>
+                        <a href="https://share.google/1r54YjRcY3c0usOwm" target="_blank" class="inline-flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <span class="material-icons mr-2">map</span>
+                            Ver en Maps
+                        </a>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-500 text-white rounded-full mb-6">
+                            <span class="material-icons text-3xl">phone</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Teléfono</h3>
+                        <p class="text-gray-300 mb-6">+57 300 8315704<br>WhatsApp disponible<br>Llamadas y mensajes</p>
+                        <a href="https://wa.me/573008315704?text=Hola%20señor%20Javier,%20quiero%20hacer%20una%20reserva" target="_blank" class="inline-flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <span class="material-icons mr-2">chat</span>
+                            Escribir WhatsApp
+                        </a>
+                    </div>
+                    
+                    <div class="text-center p-8 bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-500 text-white rounded-full mb-6">
+                            <span class="material-icons text-3xl">schedule</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Horarios</h3>
+                        <p class="text-gray-300">Lun - Jue: 12:00 - 22:00<br>Vie - Sáb: 12:00 - 24:00<br>Dom: 12:00 - 20:00</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-16">
+                    <div class="flex justify-center space-x-6 mb-8">
+                        <a href="https://www.facebook.com/javier.zuniga.42773" target="_blank" class="text-white hover:text-blue-400 transition-colors duration-300">
+                            <span class="material-icons text-4xl">facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/restaurante_marlen3?igsh=cmpwNXo4enA3Z2hj" target="_blank" class="text-white hover:text-pink-400 transition-colors duration-300">
+                            <span class="material-icons text-4xl">camera_alt</span>
+                        </a>
+                        <a href="https://wa.me/573008315704?text=Hola%20señor%20Javier,%20quiero%20hacer%20una%20reserva" target="_blank" class="text-white hover:text-green-400 transition-colors duration-300">
+                            <span class="material-icons text-4xl">chat</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-300">© 2024 Restaurante Marlene. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255, 245, 240,0.98) 100%)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255, 245, 240,0.95) 100%)';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+
+        // Toggle additional dishes function
+        function toggleAdditionalDishes() {
+            const additionalDishes = document.getElementById('additional-dishes');
+            const button = document.getElementById('showMoreDishes');
+            const buttonText = document.getElementById('buttonText');
+            const icon = button.querySelector('.material-icons');
+            
+            if (additionalDishes.classList.contains('hidden')) {
+                // Mostrar platos adicionales
+                additionalDishes.classList.remove('hidden');
+                additionalDishes.style.animation = 'fadeInUp 0.6s ease-out';
+                buttonText.textContent = 'Ver menos platos';
+                icon.textContent = 'expand_less';
+                
+                // Scroll suave hacia los platos adicionales
+                setTimeout(() => {
+                    additionalDishes.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
+            } else {
+                // Ocultar platos adicionales
+                additionalDishes.style.animation = 'fadeOutDown 0.4s ease-in';
+                buttonText.textContent = 'Ver más platos';
+                icon.textContent = 'expand_more';
+                
+                setTimeout(() => {
+                    additionalDishes.classList.add('hidden');
+                    // Scroll hacia el botón
+                    button.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }, 400);
+            }
+        }
+        
+        // Agregar animaciones CSS para mostrar/ocultar
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes fadeOutDown {
+                from {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Carousel functionality
+        const carouselData = {
+            caballo: { currentIndex: 0, totalSlides: 3 },
+            manglar: { currentIndex: 0, totalSlides: 5 },
+            local: { currentIndex: 0, totalSlides: 4 }
+        };
+
+        function updateCarousel(carouselType) {
+            let carousel, indicators;
+            
+            if (carouselType === 'local') {
+                carousel = document.querySelector(`#localCarousel .carousel-container`);
+                indicators = document.querySelectorAll('.local-dot');
+            } else {
+                carousel = document.querySelector(`#carousel-${carouselType} .carousel-container`);
+                indicators = document.querySelectorAll(`.${carouselType}-indicator`);
+            }
+            
+            if (!carousel) return;
+            
+            const currentIndex = carouselData[carouselType].currentIndex;
+            
+            // Mover el carrusel
+            const translateX = -currentIndex * 100;
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            // Actualizar indicadores
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    if (carouselType === 'local') {
+                        indicator.classList.remove('bg-white', 'bg-opacity-60');
+                        indicator.classList.add('bg-white', 'bg-opacity-100');
+                    } else {
+                        indicator.classList.add('bg-opacity-100');
+                        indicator.classList.remove('bg-opacity-60');
+                    }
+                } else {
+                    if (carouselType === 'local') {
+                        indicator.classList.remove('bg-white', 'bg-opacity-100');
+                        indicator.classList.add('bg-white', 'bg-opacity-60');
+                    } else {
+                        indicator.classList.add('bg-opacity-60');
+                        indicator.classList.remove('bg-opacity-100');
+                    }
+                }
+            });
+        }
+
+        function nextSlide(carouselType) {
+            const data = carouselData[carouselType];
+            data.currentIndex = (data.currentIndex + 1) % data.totalSlides;
+            updateCarousel(carouselType);
+        }
+
+        function prevSlide(carouselType) {
+            const data = carouselData[carouselType];
+            data.currentIndex = data.currentIndex === 0 ? data.totalSlides - 1 : data.currentIndex - 1;
+            updateCarousel(carouselType);
+        }
+
+        function goToSlide(carouselType, index) {
+            carouselData[carouselType].currentIndex = index;
+            updateCarousel(carouselType);
+        }
+
+        // Funciones específicas para el carrusel del local
+        function nextLocalSlide() {
+            nextSlide('local');
+        }
+
+        function prevLocalSlide() {
+            prevSlide('local');
+        }
+
+        function goToLocalSlide(index) {
+            goToSlide('local', index);
+        }
+
+        // Auto-play carousels
+        function autoPlay() {
+            nextSlide('caballo');
+            nextSlide('manglar');
+            nextSlide('local');
+        }
+
+        // Initialize carousels and start auto-play
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCarousel('caballo');
+            updateCarousel('manglar');
+            updateCarousel('local');
+            
+            // Auto-play every 5 seconds
+            setInterval(autoPlay, 5000);
+        });
+    </script>
+</body>
+</html>
